@@ -144,11 +144,14 @@ model Review {
 }
 
 model SiteSettings {
-  id         Int      @id @default(1)
-  logoUrl    String?
-  logoWidth  Int?
-  faviconUrl String?
-  updatedAt  DateTime @updatedAt
+  id           Int      @id @default(1)
+  logoUrl      String?
+  logoWidth    Int?
+  faviconUrl   String?
+  contactEmail String?
+  contactPhone String?
+  socialLinks  Json? // array of {label, href}
+  updatedAt    DateTime @updatedAt
 }
 
 // Uploaded image bytes, stored in the database instead of on disk so they

@@ -102,7 +102,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           href={`/trial?course=${course.slug}`}
-          className="rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(15,110,79,0.35)] transition hover:bg-primary-light"
+          className="rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(20,52,92,0.35)] transition hover:bg-primary-light"
         >
           Start Free Trial
         </Link>
@@ -133,7 +133,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
         </p>
         <Link
           href={`/trial?course=${course.slug}`}
-          className="mt-6 inline-block rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(15,110,79,0.35)] transition hover:bg-primary-light"
+          className="mt-6 inline-block rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(20,52,92,0.35)] transition hover:bg-primary-light"
         >
           Start Free Trial
         </Link>

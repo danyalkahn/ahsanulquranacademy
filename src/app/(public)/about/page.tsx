@@ -76,7 +76,7 @@ export default function AboutPage() {
         </div>
 
         <div
-          className="reveal text-center rounded-[28px] border border-black/10 px-8 py-14 sm:py-16 bg-[radial-gradient(ellipse_70%_120%_at_50%_-20%,rgba(15,110,79,0.10),rgba(255,255,255,0.6)_60%)]"
+          className="reveal text-center rounded-[28px] border border-black/10 px-8 py-14 sm:py-16 bg-[radial-gradient(ellipse_70%_120%_at_50%_-20%,rgba(20,52,92,0.10),rgba(255,255,255,0.6)_60%)]"
         >
           <h2 className="text-2xl sm:text-3xl font-bold">Start your journey today</h2>
           <p className="mx-auto mt-3.5 max-w-md text-[15px] text-muted leading-relaxed">
@@ -84,7 +84,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/trial"
-            className="mt-6.5 inline-block rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(15,110,79,0.35)] transition hover:bg-primary-light"
+            className="mt-6.5 inline-block rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(20,52,92,0.35)] transition hover:bg-primary-light"
           >
             Start Free Trial
           </Link>

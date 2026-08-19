@@ -20,7 +20,7 @@ export default function PricingCard({ plan }: { plan: PricingPlanData }) {
     <div
       className={`relative flex flex-col rounded-[26px] border p-7 sm:p-8 ${
         plan.highlighted
-          ? "border-primary bg-gradient-to-b from-primary/[0.07] to-transparent shadow-[0_20px_50px_rgba(15,110,79,0.14)]"
+          ? "border-primary bg-gradient-to-b from-primary/[0.07] to-transparent shadow-[0_20px_50px_rgba(20,52,92,0.14)]"
           : "border-black/10 bg-white"
       }`}
     >
@@ -60,7 +60,7 @@ export default function PricingCard({ plan }: { plan: PricingPlanData }) {
         href={`/trial?plan=${plan.slug}`}
         className={`mt-7 block rounded-xl py-3.5 text-center text-sm font-semibold transition ${
           plan.highlighted
-            ? "bg-primary text-white hover:bg-primary-light shadow-[0_10px_30px_rgba(15,110,79,0.35)]"
+            ? "bg-primary text-white hover:bg-primary-light shadow-[0_10px_30px_rgba(20,52,92,0.35)]"
             : "border border-primary/40 text-primary hover:bg-primary/5"
         }`}
       >

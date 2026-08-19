@@ -130,7 +130,7 @@ export default async function HomePage() {
           <div className="mt-8 flex flex-wrap justify-center gap-3.5">
             <Link
               href="/trial"
-              className="rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(15,110,79,0.35)] transition hover:bg-primary-light hover:-translate-y-0.5"
+              className="rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(20,52,92,0.35)] transition hover:bg-primary-light hover:-translate-y-0.5"
             >
               Start Free Trial
             </Link>
@@ -285,7 +285,7 @@ export default async function HomePage() {
         <div className="mt-7 flex flex-wrap justify-center gap-3.5">
           <Link
             href="/trial"
-            className="rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(15,110,79,0.35)] transition hover:bg-primary-light hover:-translate-y-0.5"
+            className="rounded-xl bg-primary px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(20,52,92,0.35)] transition hover:bg-primary-light hover:-translate-y-0.5"
           >
             Start Free Trial
           </Link>

@@ -2,20 +2,20 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #fbf7ee;
+  --background: #faf7f0;
   --surface: #ffffff;
-  --foreground: #16241b;
-  --muted: rgba(22, 36, 27, 0.64);
-  --muted-2: rgba(22, 36, 27, 0.52);
-  --border: rgba(15, 110, 79, 0.16);
-  --primary: #0f6e4f;
-  --primary-light: #16915f;
-  --primary-lighter: #2aa873;
-  --primary-lightest: #bfe4d2;
-  --gold: #c9962c;
-  --gold-light: #e0b45a;
-  --footer-bg: #0e2117;
-  --footer-fg: rgba(251, 247, 238, 0.72);
+  --foreground: #17223b;
+  --muted: rgba(23, 34, 59, 0.64);
+  --muted-2: rgba(23, 34, 59, 0.52);
+  --border: rgba(20, 52, 92, 0.16);
+  --primary: #14345c;
+  --primary-light: #1f4c82;
+  --primary-lighter: #3a6dae;
+  --primary-lightest: #c7d6ea;
+  --gold: #b8872b;
+  --gold-light: #d4a94f;
+  --footer-bg: #0c1830;
+  --footer-fg: rgba(250, 247, 240, 0.72);
 }
 
 @theme inline {
@@ -55,16 +55,16 @@ body {
 }
 
 .hero-glow-bg {
-  background: radial-gradient(ellipse 55% 60% at 50% 0%, rgba(15, 110, 79, 0.14), transparent 70%);
+  background: radial-gradient(ellipse 55% 60% at 50% 0%, rgba(20, 52, 92, 0.14), transparent 70%);
 }
 
 .home-hero-glow-bg {
-  background: radial-gradient(ellipse 60% 45% at 50% 32%, rgba(15, 110, 79, 0.16), transparent 70%);
+  background: radial-gradient(ellipse 60% 45% at 50% 32%, rgba(20, 52, 92, 0.16), transparent 70%);
 }
 
 .home-hero-grid {
-  background-image: linear-gradient(rgba(15, 110, 79, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 110, 79, 0.12) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(20, 52, 92, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 52, 92, 0.12) 1px, transparent 1px);
   background-size: 44px 44px;
   transform: perspective(600px) rotateX(58deg);
   transform-origin: 50% 100%;
@@ -124,17 +124,13 @@ body {
   animation: marquee 26s linear infinite;
 }
 
-/* Scroll-triggered reveal. Falls back to a plain one-shot entrance animation
-   in browsers without CSS scroll-driven animations (animation-timeline). */
+/* One-shot entrance animation, plays once on load. Deliberately NOT tied to
+   animation-timeline: view() (scroll-driven animation) — that left sections
+   further down the page stuck at opacity:0 in production (the animation's
+   "entry" range was calculated before hydration/layout settled, so it never
+   fired), silently hiding real content behind blank space. */
 .reveal {
   animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-@supports (animation-timeline: view()) {
-  .reveal {
-    animation-timeline: view();
-    animation-range: entry 0% entry 55%;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

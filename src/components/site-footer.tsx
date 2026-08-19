@@ -2,17 +2,26 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import ObfuscatedEmail from "@/components/obfuscated-email";
-
-const [emailUser, emailDomain] = siteConfig.contactEmail.split("@");
+import type { SocialLink } from "@/lib/site-settings";
 
 export default function SiteFooter({
   logoUrl,
   logoWidth,
+  contactEmail,
+  contactPhone,
+  socialLinks,
 }: {
   logoUrl?: string | null;
   logoWidth?: number | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  socialLinks?: SocialLink[] | null;
 }) {
   const size = logoWidth || 28;
+  const email = contactEmail || siteConfig.contactEmail;
+  const [emailUser, emailDomain] = email.split("@");
+  const phones = contactPhone ? [contactPhone] : siteConfig.phones;
+  const social = socialLinks && socialLinks.length > 0 ? socialLinks : siteConfig.social;
 
   return (
     <footer className="border-t border-black/10 bg-footer-bg mt-24 text-footer-fg">
@@ -60,7 +69,7 @@ export default function SiteFooter({
             <li>
               <ObfuscatedEmail user={emailUser} domain={emailDomain} className="hover:text-white" />
             </li>
-            {siteConfig.phones.map((phone) => (
+            {phones.map((phone) => (
               <li key={phone}>
                 <a href={`tel:${phone.replace(/\s+/g, "")}`} className="hover:text-white">
                   {phone}
@@ -69,7 +78,7 @@ export default function SiteFooter({
             ))}
           </ul>
           <div className="mt-4 flex flex-wrap gap-2">
-            {siteConfig.social.map((s) => (
+            {social.map((s) => (
               <a
                 key={s.label}
                 href={s.href}

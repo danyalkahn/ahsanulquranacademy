@@ -14,13 +14,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
-  const { logoUrl, logoWidth } = await getSiteSettings();
+  const { logoUrl, logoWidth, contactEmail, contactPhone, socialLinks } = await getSiteSettings();
 
   return (
     <>
       <SiteHeader logoUrl={logoUrl} logoWidth={logoWidth} />
       <main className="flex-1">{children}</main>
-      <SiteFooter logoUrl={logoUrl} logoWidth={logoWidth} />
+      <SiteFooter
+        logoUrl={logoUrl}
+        logoWidth={logoWidth}
+        contactEmail={contactEmail}
+        contactPhone={contactPhone}
+        socialLinks={socialLinks}
+      />
     </>
   );
 }

@@ -13,7 +13,7 @@ export default function CourseCard({ course }: { course: CourseCardData }) {
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className="flex flex-col rounded-2xl border border-black/10 overflow-hidden bg-white transition hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_20px_44px_rgba(15,110,79,0.14)]"
+      className="flex flex-col rounded-2xl border border-black/10 overflow-hidden bg-white transition hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_20px_44px_rgba(20,52,92,0.14)]"
     >
       <div className="relative h-40 shrink-0 overflow-hidden bg-gradient-to-br from-primary/10 to-gold/10">
         {course.heroImage ? (

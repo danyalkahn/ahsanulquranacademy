@@ -60,7 +60,7 @@ function TrialForm() {
 
   if (status === "sent") {
     return (
-      <div className="rounded-[26px] border border-black/10 bg-white p-6 sm:p-9 shadow-[0_24px_60px_rgba(15,110,79,0.08)] py-16 text-center">
+      <div className="rounded-[26px] border border-black/10 bg-white p-6 sm:p-9 shadow-[0_24px_60px_rgba(20,52,92,0.08)] py-16 text-center">
         <p className="text-lg font-semibold text-primary">Trial request received</p>
         <p className="mt-2 text-sm text-muted max-w-sm mx-auto">
           JazakAllah khair — one of our team members will contact you shortly to schedule your
@@ -73,7 +73,7 @@ function TrialForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-col gap-5 rounded-[26px] border border-black/10 bg-white p-6 sm:p-9 shadow-[0_24px_60px_rgba(15,110,79,0.08)]"
+      className="flex flex-col gap-5 rounded-[26px] border border-black/10 bg-white p-6 sm:p-9 shadow-[0_24px_60px_rgba(20,52,92,0.08)]"
     >
       <input
         type="text"
@@ -190,7 +190,7 @@ function TrialForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="rounded-xl bg-primary py-3.5 text-sm font-semibold text-white shadow-[0_8px_26px_rgba(15,110,79,0.35)] transition hover:bg-primary-light disabled:opacity-50"
+        className="rounded-xl bg-primary py-3.5 text-sm font-semibold text-white shadow-[0_8px_26px_rgba(20,52,92,0.35)] transition hover:bg-primary-light disabled:opacity-50"
       >
         {status === "sending" ? "Sending…" : "Request my free trial →"}
       </button>
