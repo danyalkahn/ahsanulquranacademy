@@ -1,0 +1,190 @@
+// Prisma schema for the Ahsan Ul Quran Academy site + admin backend.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  loginChallenges    LoginChallenge[]
+  passwordResetCodes PasswordResetCode[]
+}
+
+model LoginChallenge {
+  id          Int       @id @default(autoincrement())
+  token       String    @unique
+  adminUserId Int
+  otpHash     String
+  expiresAt   DateTime
+  attempts    Int       @default(0)
+  consumedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  adminUser AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@index([adminUserId])
+}
+
+model PasswordResetCode {
+  id          Int       @id @default(autoincrement())
+  token       String    @unique
+  adminUserId Int
+  codeHash    String
+  expiresAt   DateTime
+  attempts    Int       @default(0)
+  consumedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  adminUser AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@index([adminUserId])
+}
+
+model LoginAttempt {
+  id        Int      @id @default(autoincrement())
+  key       String // ip or ip+email bucket
+  createdAt DateTime @default(now())
+
+  @@index([key, createdAt])
+}
+
+model BlogPost {
+  id             Int        @id @default(autoincrement())
+  slug           String     @unique
+  title          String
+  excerpt        String     @db.VarChar(500)
+  contentHtml    String     @db.LongText
+  coverImage     String?
+  tags           String? // comma-separated
+  seoTitle       String?
+  seoDescription String?    @db.VarChar(500)
+  ogImage        String?
+  status         PostStatus @default(DRAFT)
+  publishedAt    DateTime?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@index([status, publishedAt])
+}
+
+// FAQs live as a JSON array of {question, answer} on the row itself rather
+// than a separate table — ordering is just array order, and it keeps the
+// admin course editor to a single form.
+model Course {
+  id               Int      @id @default(autoincrement())
+  slug             String   @unique
+  title            String
+  shortDescription String   @db.VarChar(500)
+  contentHtml      String   @db.LongText
+  heroImage        String?
+  icon             String? // short emoji/label shown on course cards
+  faqs             Json? // array of {question, answer}
+  seoTitle         String?
+  seoDescription   String?  @db.VarChar(500)
+  ogImage          String?
+  published        Boolean  @default(true)
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([published, sortOrder])
+}
+
+model PricingPlan {
+  id               Int      @id @default(autoincrement())
+  slug             String   @unique
+  name             String
+  tagline          String   @db.VarChar(300)
+  price            Int // whole-dollar monthly price
+  billingPeriod    String   @default("month")
+  classesPerWeek   Int
+  classesPerMonth  Int
+  minutesPerClass  Int      @default(30)
+  altPricingNote   String? // e.g. "Prefer 60-minute classes? $72/month"
+  features         Json // array of strings
+  highlighted      Boolean  @default(false) // "Most Popular" badge
+  ctaLabel         String   @default("Start Free Trial")
+  published        Boolean  @default(true)
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([published, sortOrder])
+}
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  clientName String
+  company    String?
+  role       String?
+  quote      String   @db.Text
+  avatar     String?
+  rating     Int?
+  published  Boolean  @default(true)
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([published, sortOrder])
+}
+
+model SiteSettings {
+  id         Int      @id @default(1)
+  logoUrl    String?
+  logoWidth  Int?
+  faviconUrl String?
+  updatedAt  DateTime @updatedAt
+}
+
+// Uploaded image bytes, stored in the database instead of on disk so they
+// survive Hostinger deploys that wipe the filesystem outside git.
+model MediaAsset {
+  id        String   @id @default(uuid())
+  category  String
+  mimeType  String
+  data      Bytes    @db.LongBlob
+  createdAt DateTime @default(now())
+}
+
+model ContactSubmission {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String    @db.Text
+  ip        String?
+  createdAt DateTime  @default(now())
+  readAt    DateTime?
+}
+
+// Denormalized course/plan names (not FKs) so deleting a course or plan
+// later never cascades into historical leads.
+model TrialRequest {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String
+  phone         String?
+  course        String?
+  preferredPlan String?
+  preferredTime String?
+  notes         String?   @db.Text
+  ip            String?
+  createdAt     DateTime  @default(now())
+  readAt        DateTime?
+}

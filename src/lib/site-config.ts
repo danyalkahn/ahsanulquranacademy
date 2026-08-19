@@ -1,0 +1,37 @@
+export const siteConfig = {
+  name: "Ahsan Ul Quran Academy",
+  legalName: "Ahsan Ul Quran Academy",
+  contactEmail: "info@ahsanulquranacademy.com",
+  phones: ["+1 (000) 000-0000"],
+  address: {
+    street: "Online Academy",
+    locality: "Serving students worldwide",
+    region: "",
+    country: "",
+    countryCode: "US",
+  },
+  social: [
+    { label: "Facebook", href: "https://facebook.com" },
+    { label: "Instagram", href: "https://instagram.com" },
+    { label: "YouTube", href: "https://youtube.com" },
+    { label: "WhatsApp", href: "https://wa.me/10000000000" },
+  ],
+  courseNav: [
+    { slug: "online-quran-classes-for-kids", label: "Quran Classes for Kids" },
+    { slug: "online-tajweed-classes", label: "Tajweed Classes" },
+    { slug: "online-hifz-program", label: "Hifz Program" },
+    { slug: "online-quran-classes-for-adults", label: "Quran Classes for Adults" },
+    { slug: "online-noorani-qaida-classes", label: "Noorani Qaida Classes" },
+    { slug: "quran-classes-for-new-muslims", label: "Classes for New Muslims" },
+    { slug: "learn-arabic-online", label: "Learn Arabic Online" },
+    { slug: "online-islamic-studies-classes", label: "Islamic Studies Classes" },
+  ],
+  nav: [
+    { href: "/", label: "Home" },
+    { href: "/courses", label: "Courses" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/about", label: "About" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
+  ],
+};

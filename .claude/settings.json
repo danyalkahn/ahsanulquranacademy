@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/danykhan/projects/adivantech/**)",
+      "Bash(npm install *)",
+      "Bash(node -e \"console.log\\(require\\('crypto'\\).randomBytes\\(32\\).toString\\('hex'\\)\\)\")",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(systemctl list-units *)",
+      "Bash(docker --version)",
+      "Bash(sudo -n mysql -e \"SELECT 1\")",
+      "Bash(mysql -u root -e \"SELECT 1\")"
+    ]
+  }
+}
