@@ -15,7 +15,7 @@ export function HomeHeroBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="home-hero-glow-bg absolute inset-0" />
-      <div className="home-hero-grid absolute inset-x-0 bottom-0 h-[260px] opacity-70" />
+      <div className="home-hero-grid absolute inset-0" />
     </div>
   );
 }

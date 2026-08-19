@@ -22,6 +22,15 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: homeTitle, description },
 };
 
+// Placeholder figures — update once you have real numbers (or ask to make
+// these editable from the admin panel).
+const trustStats = [
+  { value: "500+", label: "Students taught" },
+  { value: "30+", label: "Countries reached" },
+  { value: "4.9★", label: "Average rating" },
+  { value: "50+", label: "Certified tutors" },
+];
+
 const highlights = [
   {
     icon: "🎓",
@@ -114,38 +123,82 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="relative -mt-[78px] overflow-hidden pt-[78px]">
         <HomeHeroBackground />
-        <div className="relative mx-auto max-w-4xl px-6 pt-24 pb-16 text-center">
-          <HeroBadge label="ONLINE QURAN ACADEMY" />
-          <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.02]">
-            Learn Quran
-            <br />
-            <span className="bg-gradient-to-r from-primary via-primary-lighter to-primary bg-clip-text text-transparent">
-              with confidence
-            </span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-base sm:text-lg text-muted leading-relaxed">
-            One-on-one live Quran, Tajweed, Hifz and Arabic classes with certified teachers —
-            for kids and adults, anywhere in the world.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3.5">
-            <Link
-              href="/trial"
-              className="rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(20,52,92,0.35)] transition hover:bg-primary-light hover:-translate-y-0.5"
-            >
-              Start Free Trial
-            </Link>
-            <Link
-              href="/courses"
-              className="rounded-xl border border-black/10 bg-white px-7 py-3.5 text-sm font-medium text-foreground transition hover:border-primary/40 hover:text-primary"
-            >
-              Explore courses
-            </Link>
+        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pt-20 pb-16 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div className="text-center lg:text-left">
+            <HeroBadge label="ONLINE QURAN ACADEMY" />
+            <h1 className="mt-6 text-5xl sm:text-6xl font-bold tracking-tight leading-[1.05]">
+              Learn Quran
+              <br />
+              <span className="bg-gradient-to-r from-primary via-primary-lighter to-primary bg-clip-text text-transparent">
+                with confidence
+              </span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-xl text-base sm:text-lg text-muted leading-relaxed lg:mx-0">
+              One-on-one live Quran, Tajweed, Hifz and Arabic classes with certified teachers —
+              for kids and adults, anywhere in the world.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3.5 lg:justify-start">
+              <Link
+                href="/trial"
+                className="rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(20,52,92,0.35)] transition hover:bg-primary-light hover:-translate-y-0.5"
+              >
+                Start Free Trial
+              </Link>
+              <Link
+                href="/courses"
+                className="rounded-xl border border-black/10 bg-white px-7 py-3.5 text-sm font-medium text-foreground transition hover:border-primary/40 hover:text-primary"
+              >
+                Explore courses
+              </Link>
+            </div>
+          </div>
+
+          {/* Visual panel — swap for a real teacher/student photo via an admin
+              hero-image field once one is available; this abstract panel
+              carries the same value props in the meantime. */}
+          <div className="relative mx-auto w-full max-w-md lg:mx-0">
+            <div className="relative overflow-hidden rounded-[28px] border border-black/10 bg-gradient-to-br from-primary to-primary-light p-10 shadow-[0_30px_70px_rgba(20,52,92,0.25)] aspect-[4/5]">
+              <div className="home-hero-grid absolute inset-0 opacity-30" />
+              <div className="relative flex h-full flex-col items-center justify-center text-center text-white">
+                <span className="text-6xl">📖</span>
+                <p className="label mt-6 text-xs text-white/70">AHSAN UL QURAN ACADEMY</p>
+                <p className="mt-2 text-lg font-semibold leading-snug">
+                  Real teachers.
+                  <br />
+                  Real, live classes.
+                </p>
+              </div>
+            </div>
+            <div className="absolute -left-5 -bottom-5 rounded-2xl border border-black/10 bg-white px-5 py-3.5 shadow-[0_16px_34px_rgba(20,52,92,0.16)]">
+              <div className="text-xs font-semibold text-foreground">🎓 Ijazah-Certified</div>
+              <div className="text-[11px] text-muted-2">Tutors</div>
+            </div>
+            <div className="absolute -right-4 -top-4 rounded-2xl border border-black/10 bg-white px-5 py-3.5 shadow-[0_16px_34px_rgba(20,52,92,0.16)]">
+              <div className="text-xs font-semibold text-foreground">👤 1-on-1</div>
+              <div className="text-[11px] text-muted-2">Live sessions</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Trust strip */}
+        <div className="relative mx-auto max-w-5xl px-6 pb-4">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 sm:grid-cols-4">
+            {trustStats.map((stat) => (
+              <div key={stat.label} className="bg-white px-5 py-6 text-center">
+                <div className="text-2xl font-bold text-primary">{stat.value}</div>
+                <div className="mt-1 text-xs text-muted-2">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Highlights */}
-      <section className="reveal mx-auto max-w-6xl px-6 py-10">
+      <section className="reveal mx-auto max-w-6xl px-6 py-16">
+        <div className="text-center mb-10">
+          <div className="label text-[11.5px] text-primary">WHY CHOOSE US</div>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight">Built for real progress</h2>
+        </div>
         <div className="grid gap-5 sm:grid-cols-3">
           {highlights.map((h) => (
             <div

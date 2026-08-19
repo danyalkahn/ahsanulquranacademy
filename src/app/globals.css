@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #faf7f0;
+  --background: #f5f7fb;
   --surface: #ffffff;
   --foreground: #17223b;
   --muted: rgba(23, 34, 59, 0.64);
@@ -59,17 +59,19 @@ body {
 }
 
 .home-hero-glow-bg {
-  background: radial-gradient(ellipse 60% 45% at 50% 32%, rgba(20, 52, 92, 0.16), transparent 70%);
+  background: radial-gradient(ellipse 70% 55% at 78% 22%, rgba(184, 135, 43, 0.1), transparent 65%),
+    radial-gradient(ellipse 60% 60% at 15% 15%, rgba(20, 52, 92, 0.1), transparent 70%);
 }
 
+/* Subtle dot-lattice texture standing in for the old 3D "tech grid" — reads
+   as quiet geometric texture (in the spirit of Islamic geometric patterning)
+   rather than a sci-fi/SaaS-dashboard floor grid, which didn't fit the
+   academy's tone. */
 .home-hero-grid {
-  background-image: linear-gradient(rgba(20, 52, 92, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 52, 92, 0.12) 1px, transparent 1px);
-  background-size: 44px 44px;
-  transform: perspective(600px) rotateX(58deg);
-  transform-origin: 50% 100%;
-  mask-image: linear-gradient(transparent, black 55%);
-  -webkit-mask-image: linear-gradient(transparent, black 55%);
+  background-image: radial-gradient(circle at 1px 1px, rgba(20, 52, 92, 0.14) 1.5px, transparent 0);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 75% 100% at 50% 0%, black 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 100% at 50% 0%, black 30%, transparent 85%);
 }
 
 @keyframes floaty {
