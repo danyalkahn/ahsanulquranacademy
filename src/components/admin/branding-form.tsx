@@ -7,6 +7,7 @@ type BrandingFormValues = {
   logoUrl: string | null;
   logoWidth: number | null;
   faviconUrl: string | null;
+  heroImage: string | null;
 };
 
 const DEFAULT_LOGO_WIDTH = 32;
@@ -85,6 +86,13 @@ export default function BrandingForm({ initial }: { initial: BrandingFormValues 
           category="branding"
           value={values.faviconUrl}
           onChange={(v) => set("faviconUrl", v)}
+        />
+
+        <ImageUploader
+          label="Homepage hero image (a photo of a teacher/student works well; falls back to an illustrated panel if unset)"
+          category="branding"
+          value={values.heroImage}
+          onChange={(v) => set("heroImage", v)}
         />
         {message && (
           <p className={`text-sm ${message.type === "ok" ? "text-primary" : "text-red-600"}`}>

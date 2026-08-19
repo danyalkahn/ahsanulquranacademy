@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/db";
+import { getSiteSettings } from "@/lib/site-settings";
 import { HeroBadge, HomeHeroBackground } from "@/components/hero-background";
 import CourseCard from "@/components/course-card";
 import PricingCard from "@/components/pricing-card";
@@ -89,10 +91,11 @@ const faqs = [
 ];
 
 export default async function HomePage() {
-  const [courses, plans, reviews] = await Promise.all([
+  const [courses, plans, reviews, { heroImage }] = await Promise.all([
     prisma.course.findMany({ where: { published: true }, orderBy: { sortOrder: "asc" }, take: 6 }),
     prisma.pricingPlan.findMany({ where: { published: true }, orderBy: { sortOrder: "asc" } }),
     prisma.review.findMany({ where: { published: true }, orderBy: { sortOrder: "asc" }, take: 3 }),
+    getSiteSettings(),
   ]);
 
   const ratedReviews = reviews.filter((r) => r.rating);
@@ -153,22 +156,27 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Visual panel — swap for a real teacher/student photo via an admin
-              hero-image field once one is available; this abstract panel
-              carries the same value props in the meantime. */}
+          {/* Visual panel — shows the admin-uploaded hero photo (Settings →
+              Branding) when set, otherwise an illustrated placeholder. */}
           <div className="relative mx-auto w-full max-w-md lg:mx-0">
-            <div className="relative overflow-hidden rounded-[28px] border border-black/10 bg-gradient-to-br from-primary to-primary-light p-10 shadow-[0_30px_70px_rgba(20,52,92,0.25)] aspect-[4/5]">
-              <div className="home-hero-grid absolute inset-0 opacity-30" />
-              <div className="relative flex h-full flex-col items-center justify-center text-center text-white">
-                <span className="text-6xl">📖</span>
-                <p className="label mt-6 text-xs text-white/70">AHSAN UL QURAN ACADEMY</p>
-                <p className="mt-2 text-lg font-semibold leading-snug">
-                  Real teachers.
-                  <br />
-                  Real, live classes.
-                </p>
+            {heroImage ? (
+              <div className="relative overflow-hidden rounded-[28px] border border-black/10 shadow-[0_30px_70px_rgba(20,52,92,0.25)] aspect-[4/5]">
+                <Image src={heroImage} alt="Student learning Quran online" fill sizes="(min-width: 1024px) 420px, 90vw" className="object-cover" priority />
               </div>
-            </div>
+            ) : (
+              <div className="relative overflow-hidden rounded-[28px] border border-black/10 bg-gradient-to-br from-primary to-primary-light p-10 shadow-[0_30px_70px_rgba(20,52,92,0.25)] aspect-[4/5]">
+                <div className="home-hero-grid absolute inset-0 opacity-30" />
+                <div className="relative flex h-full flex-col items-center justify-center text-center text-white">
+                  <span className="text-6xl">📖</span>
+                  <p className="label mt-6 text-xs text-white/70">AHSAN UL QURAN ACADEMY</p>
+                  <p className="mt-2 text-lg font-semibold leading-snug">
+                    Real teachers.
+                    <br />
+                    Real, live classes.
+                  </p>
+                </div>
+              </div>
+            )}
             <div className="absolute -left-5 -bottom-5 rounded-2xl border border-black/10 bg-white px-5 py-3.5 shadow-[0_16px_34px_rgba(20,52,92,0.16)]">
               <div className="text-xs font-semibold text-foreground">🎓 Ijazah-Certified</div>
               <div className="text-[11px] text-muted-2">Tutors</div>

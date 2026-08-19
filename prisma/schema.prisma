@@ -148,6 +148,7 @@ model SiteSettings {
   logoUrl      String?
   logoWidth    Int?
   faviconUrl   String?
+  heroImage    String? // homepage hero photo; falls back to an illustrated panel when unset
   contactEmail String?
   contactPhone String?
   socialLinks  Json? // array of {label, href}

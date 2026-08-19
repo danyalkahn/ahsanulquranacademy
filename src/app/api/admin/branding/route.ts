@@ -7,6 +7,7 @@ const bodySchema = z.object({
   logoUrl: z.string().nullable().optional(),
   logoWidth: z.number().int().min(16).max(240).nullable().optional(),
   faviconUrl: z.string().nullable().optional(),
+  heroImage: z.string().nullable().optional(),
 });
 
 export async function GET() {
@@ -18,6 +19,7 @@ export async function GET() {
     logoUrl: settings?.logoUrl ?? null,
     logoWidth: settings?.logoWidth ?? null,
     faviconUrl: settings?.faviconUrl ?? null,
+    heroImage: settings?.heroImage ?? null,
   });
 }
 
@@ -33,12 +35,18 @@ export async function PATCH(request: Request) {
 
   const settings = await prisma.siteSettings.upsert({
     where: { id: 1 },
-    update: { logoUrl: data.logoUrl || null, logoWidth: data.logoWidth ?? null, faviconUrl: data.faviconUrl || null },
+    update: {
+      logoUrl: data.logoUrl || null,
+      logoWidth: data.logoWidth ?? null,
+      faviconUrl: data.faviconUrl || null,
+      heroImage: data.heroImage || null,
+    },
     create: {
       id: 1,
       logoUrl: data.logoUrl || null,
       logoWidth: data.logoWidth ?? null,
       faviconUrl: data.faviconUrl || null,
+      heroImage: data.heroImage || null,
     },
   });
 
@@ -46,5 +54,6 @@ export async function PATCH(request: Request) {
     logoUrl: settings.logoUrl,
     logoWidth: settings.logoWidth,
     faviconUrl: settings.faviconUrl,
+    heroImage: settings.heroImage,
   });
 }
