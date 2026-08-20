@@ -28,7 +28,7 @@ export default function SiteFooter({
       <div className="mx-auto max-w-6xl px-6 py-14 grid gap-10 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Image src={logoUrl || "/brand/logo.svg"} alt="Ahsan Ul Quran Academy" width={size} height={size} unoptimized={Boolean(logoUrl)} />
+            <Image src={logoUrl || "/brand/logo.svg"} alt="Ahsan Ul Quran Academy" width={size} height={size} />
             <span className="font-semibold text-sm text-white">Ahsan Ul Quran Academy</span>
           </div>
           <p className="text-sm leading-relaxed max-w-[260px]">

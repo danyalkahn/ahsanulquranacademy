@@ -6,7 +6,10 @@
   --surface: #ffffff;
   --foreground: #17223b;
   --muted: rgba(23, 34, 59, 0.64);
-  --muted-2: rgba(23, 34, 59, 0.52);
+  /* 0.68, not the original 0.52 — Lighthouse flagged the lighter value as
+     failing WCAG AA contrast (~3.4:1) for small secondary text on white
+     cards (e.g. pricing card "/month"); 0.68 measures ~5.5:1. */
+  --muted-2: rgba(23, 34, 59, 0.68);
   --border: rgba(20, 52, 92, 0.16);
   --primary: #14345c;
   --primary-light: #1f4c82;

@@ -29,7 +29,6 @@ export default function SiteHeader({
               width={size}
               height={size}
               priority
-              unoptimized={Boolean(logoUrl)}
             />
             <span className="hidden sm:block font-semibold text-[15px] tracking-tight text-foreground">
               Ahsan Ul Quran Academy
