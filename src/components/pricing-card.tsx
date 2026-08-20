@@ -25,7 +25,7 @@ export default function PricingCard({ plan }: { plan: PricingPlanData }) {
       }`}
     >
       {plan.highlighted && (
-        <span className="label absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-[11px] text-white shadow-sm">
+        <span className="label absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-[11px] text-foreground shadow-sm">
           ⭐ Most Popular
         </span>
       )}
